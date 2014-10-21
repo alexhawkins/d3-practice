@@ -28,10 +28,11 @@ d3.select('section.set2').selectAll('div')
         return 'rgb(153,' + hue + ',' + hue + ')';
     });
 
-var newData = []
+var newData = [];
 var newData = dataset.map(function(el) {
     return el + Math.floor(Math.random() * 30);
-})
+});
+
 d3.select('section.set3').selectAll('div')
     .data(newData)
     .enter()
@@ -62,7 +63,7 @@ var w = 500,
 var svg = d3.select('section.svg1')
     .append('svg')
     .attr('width', w)
-    .attr('height', h)
+    .attr('height', h);
 
 var dataset = [5, 10, 15, 20, 25];
 var circles = svg.selectAll('circle')
@@ -93,19 +94,24 @@ var w = 500,
 var svg = d3.select('.bar-chart')
     .append('svg')
     .attr('width', w)
-    .attr('height', h)
+    .attr('height', h);
 
 svg.selectAll('rect')
     .data(dataset)
     .enter()
     .append('rect')
-    .attr('x', function(d, i) {
-        return (i * (w / dataset.length));
-    })
-    .attr('y', function (d) {
-        return (h - d * 4);
-    })
-    .attr('width', w / dataset.length - barPadding)
-    .attr('height', function(d) {
-        return d * 4;
+    .attr({
+        x: function(d, i) {
+            return (i * (w / dataset.length));
+        },
+        y: function(d) {
+            return (h - d * 4);
+        },
+        width: w / dataset.length - barPadding,
+        height: function(d) {
+            return d * 4;
+        },
+        fill: function(d) {
+            return 'rgb(0, 0, ' + (d * 10) + ')';
+        }
     });

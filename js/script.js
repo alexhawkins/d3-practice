@@ -56,7 +56,7 @@ d3.select('body').selectAll('p')
     .style('color', function(d) {
         return d > 24 ? 'blue' : 'red';
     });*/
-var w = 500, h = 50;
+var w = 500, h = 80;
 
 var svg = d3.select('section.svg1')
     .append('svg')
@@ -71,4 +71,9 @@ var circles = svg.selectAll('circle')
         .attr('cx', function(d, i) { return (i * 50) + 25; } )
         .attr('cy', h / 2)
         .attr('r', function(d) { return d; } )
-        .style('fill', '#000');
+        .attr('fill', 'yellow')
+        .attr('stroke', 'orange')
+        .attr('stroke-width', function(d){
+          return d / 2;
+        });
+

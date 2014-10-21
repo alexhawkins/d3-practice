@@ -1,0 +1,11 @@
+div.bar {
+  display: inline-block;
+  width: 20px;
+  height: 75px; /*Height will be overridden*/
+  background-color: #FECA30;
+  margin-right: 2px;
+}
+
+.svg1{
+  padding: 20px 0 20px 0;
+}

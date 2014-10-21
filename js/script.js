@@ -56,24 +56,56 @@ d3.select('body').selectAll('p')
     .style('color', function(d) {
         return d > 24 ? 'blue' : 'red';
     });*/
-var w = 500, h = 80;
+var w = 500,
+    h = 80;
 
 var svg = d3.select('section.svg1')
     .append('svg')
     .attr('width', w)
     .attr('height', h)
 
-var dataset = [5,10,15,20,25];
+var dataset = [5, 10, 15, 20, 25];
 var circles = svg.selectAll('circle')
     .data(dataset)
     .enter()
     .append('circle')
-        .attr('cx', function(d, i) { return (i * 50) + 25; } )
-        .attr('cy', h / 2)
-        .attr('r', function(d) { return d; } )
-        .attr('fill', 'yellow')
-        .attr('stroke', 'orange')
-        .attr('stroke-width', function(d){
-          return d / 2;
-        });
+    .attr('cx', function(d, i) {
+        return (i * 50) + 25;
+    })
+    .attr('cy', h / 2)
+    .attr('r', function(d) {
+        return d;
+    })
+    .attr('fill', 'yellow')
+    .attr('stroke', 'orange')
+    .attr('stroke-width', function(d) {
+        return d / 2;
+    });
 
+/* BAR CHART */
+var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 23, 25];
+
+/** Establish height of our new SVG */
+var w = 500,
+    h = 100,
+    barPadding = 2;
+/** Create an empty SVG Element and add to the DOM */
+var svg = d3.select('.bar-chart')
+    .append('svg')
+    .attr('width', w)
+    .attr('height', h)
+
+svg.selectAll('rect')
+    .data(dataset)
+    .enter()
+    .append('rect')
+    .attr('x', function(d, i) {
+        return (i * (w / dataset.length));
+    })
+    .attr('y', function (d) {
+        return (h - d * 4);
+    })
+    .attr('width', w / dataset.length - barPadding)
+    .attr('height', function(d) {
+        return d * 4;
+    });

@@ -84,11 +84,11 @@ var circles = svg.selectAll('circle')
     });
 
 /* BAR CHART */
-var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 23, 25];
+var dataset = [5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 20, 18, 17, 16, 23, 25, 29, 14];
 
 /** Establish height of our new SVG */
-var w = 500,
-    h = 100,
+var w = 540,
+    h = 120,
     barPadding = 2;
 /** Create an empty SVG Element and add to the DOM */
 var svg = d3.select('.bar-chart')
@@ -114,4 +114,28 @@ svg.selectAll('rect')
         fill: function(d) {
             return 'rgb(0, 0, ' + (d * 10) + ')';
         }
+    });
+
+/** Add text to visualizations */
+
+svg.selectAll('text')
+    .data(dataset)
+    .enter()
+    .append('text')
+    .text(function(d) {
+        return d;
+    })
+    .attr({
+        x: function(d, i) {
+            return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
+        },
+        y: function(d) {
+            return h - (d * 4) + 14;
+        }
+    })
+    .style({
+        'font-family': 'sans-serif',
+        'font-size': '11px',
+        'fill': 'white',
+        'text-anchor': 'middle'
     });
